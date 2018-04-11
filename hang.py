@@ -3,17 +3,19 @@ import string
 
 WORDLIST_FILENAME = "palavras.txt"
 
-#Carrega palavras
+def message_load():
+     print ("Loading word list from file...")
+
 def loadWords():
 
-    print ("Loading word list from file...")
+    message_load()
     inFile = open(WORDLIST_FILENAME, 'r')
     line = inFile.readline()
     wordlist = str.split(line)
     print ("  ", len(wordlist), "words loaded.")
     return random.choice(wordlist)
 
-#
+
 def isWordGuessed(secretWord, lettersGuessed):
     secretLetters = []
 
@@ -32,16 +34,13 @@ def isWordGuessed(secretWord, lettersGuessed):
     return True
 
 def getGuessedWord():
-
      guessed = ''
 
      return guessed
 
 def getAvailableLetters():
     import string
-    # 'abcdefghijklmnopqrstuvwxyz'
     available = string.ascii_lowercase
-
 
     return available
 
@@ -122,6 +121,7 @@ def hangman(secretWord):
         
     
 
-
 secretWord = loadWords().lower()
 hangman(secretWord)
+
+
