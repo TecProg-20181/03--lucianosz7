@@ -5,30 +5,16 @@ WORDLIST_FILENAME = "palavras.txt"
 
 #Carrega palavras
 def loadWords():
-    """
-    Depending on the size of the word list, this function may
-    take a while to finish.
-    """
+
     print ("Loading word list from file...")
-    # inFile: file
-    #Abre o arquivo de palavras no modo read;
-    #função para abrir arquivo
     inFile = open(WORDLIST_FILENAME, 'r')
-    # line: string
-    #ler até a próxima linha;
-    #ler arquivo-   
     line = inFile.readline()
-    # wordlist: list of strings
-    #Objeto do tipo string, retorna uma lista de palavras 
     wordlist = str.split(line)
-    #Retorna a quantidade de palavras no wordlist
     print ("  ", len(wordlist), "words loaded.")
-    #retorna uma palavra randomica
     return random.choice(wordlist)
 
 #
 def isWordGuessed(secretWord, lettersGuessed):
-    #lista de letras 'secretas'
     secretLetters = []
 
     for letter in secretWord:
@@ -70,25 +56,29 @@ def Count_letters_notEqual(secretWord):
             word.append(letter)
     print('This Word has', len(word),'different letters')
 
-def hangman(secretWord):
-    #chances
-    guesses = 8
-    lettersGuessed = []
+def message_begin():
     print ('Welcome to the game, Hangam!')
     print ('I am thinking of a word that is', len(secretWord), ' letters long.')
     Count_letters_notEqual(secretWord)
     print ('-------------')
 
-    while  isWordGuessed(secretWord, lettersGuessed) == False and guesses >0:
-        print ('You have ', guesses, 'guesses left.')
-        #armazena as letras disponiveis
-        available = getAvailableLetters()
-        for letter in available:
-            if letter in lettersGuessed:
-                available = available.replace(letter, '')
+def hangman(secretWord):
+    #chances
+    guesses = 8
+    lettersGuessed = []
+    message_begin()
+    k = len(secretWord)
+    if k > guesses:
+        while  isWordGuessed(secretWord, lettersGuessed) == False and guesses >0:
+            print ('You have ', guesses, 'guesses left.')
+            #armazena as letras disponiveis
+            available = getAvailableLetters()
+            for letter in available:
+                if letter in lettersGuessed:
+                    available = available.replace(letter, '')
 
-        print ('Available letters', available)
-        letter = input('Please guess a letter: ')
+            print ('Available letters', available)
+            letter = input('Please guess a letter: ')
         if letter in lettersGuessed:
 
             guessed = getGuessedWord()
@@ -129,8 +119,8 @@ def hangman(secretWord):
             print ('Congratulations, you won!')
         else:
             print ('Sorry, you ran out of guesses. The word was ', secretWord, '.')
-
-
+        
+   
 
 
 secretWord = loadWords().lower()
