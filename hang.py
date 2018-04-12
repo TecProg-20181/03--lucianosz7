@@ -63,61 +63,59 @@ def game_result(lettersGuessed):
     else:
         print ('Sorry, you ran out of guesses. The word was ', secretWord, '.')
 
-def attempts(guesses, lettersGuessed):
-        print ('You have ', guesses, 'guesses left.')
-        #armazena as letras disponiveis
-        available = getAvailableLetters()
-        for letter in available:
-            if letter in lettersGuessed:
-                available = available.replace(letter, '')
-
-        print ('Available letters', available)
-        letter = input('Please guess a letter: ')
-        if letter in lettersGuessed:
-            
-            guessed = getGuessedWord()
-            for letter in secretWord:
-                if letter in lettersGuessed:
-                    guessed += letter
-                else:
-                    guessed += '_ '
-
-            print ('Oops! You have already guessed that letter: ', guessed)
-        elif letter in secretWord:
-            lettersGuessed.append(letter)
-
-            guessed = getGuessedWord()
-            for letter in secretWord:
-                if letter in lettersGuessed:
-                    guessed += letter
-                else:
-                    guessed += '_ '
-
-            print ('Good Guess: ', guessed)
-        else:
-            guesses -=1
-            lettersGuessed.append(letter)
-
-            guessed = getGuessedWord()
-            for letter in secretWord:
-                if letter in lettersGuessed:
-                    guessed += letter
-                else:
-                    guessed += '_ '
-
-            print ('Oops! That letter is not in my word: ',  guessed)
-        print ('------------')
 
 def hangman(secretWord):
     guesses = 8
     lettersGuessed = []
     message_begin()
-
     while  isWordGuessed(secretWord, lettersGuessed) == False and guesses >0:
-        attempts(guesses, lettersGuessed)
+         print ('You have ', guesses, 'guesses left.')
 
+       #armazena as letras disponiveis
+         available = getAvailableLetters()
+         for letter in available:
+             if letter in lettersGuessed:
+                 available = available.replace(letter, '')
+ 
+         print ('Available letters', available)
+         letter = input('Please guess a letter: ')
+         if letter in lettersGuessed:
+ 
+             guessed = getGuessedWord()
+             for letter in secretWord:
+                 if letter in lettersGuessed:
+                     guessed += letter
+                 else:
+                     guessed += '_ '
+ 
+             print ('Oops! You have already guessed that letter: ', guessed)
+         elif letter in secretWord:
+             lettersGuessed.append(letter)
+ 
+             guessed = getGuessedWord()
+             for letter in secretWord:
+                 if letter in lettersGuessed:       
+                     guessed += letter
+                 else:
+                     guessed += '_ '
+ 
+             print ('Good Guess: ', guessed)
+         else:
+             guesses -=1
+             lettersGuessed.append(letter)
+ 
+             guessed = getGuessedWord()
+             for letter in secretWord:
+                 if letter in lettersGuessed:
+                     guessed += letter
+                 else:
+                     guessed += '_ '
+ 
+             print ('Oops! That letter is not in my word: ',  guessed)
+         print ('------------')
     else:
         game_result(lettersGuessed)
+        
         
     
 
