@@ -18,10 +18,7 @@ def available_letter(lettersGuessed):
     for letter in available:
         if letter in lettersGuessed:
             available = available.replace(letter, '')
-    print ('#      Available letters', available,'     #')
-    print ('#                                                        #')
-    print ('#                                                        #')
-    print('##########################################################')
+    print ('      Available letters', available,'     ')
     print("\n")
 
 def Count_letters_notEqual(secretWord):
@@ -30,13 +27,13 @@ def Count_letters_notEqual(secretWord):
     for letter in secretWord:
         if letter not in word:
             word.append(letter)
-    print('#            This Word has', len(word),'different letters           #')
+    print('             This Word has', len(word),'different letters            ')
 
 def game_result(secretWord, lettersGuessed):
     if isWordGuessed(secretWord, lettersGuessed) == True:
-        print ('Congratulations, you won!')
+        print ('        Congratulations, you won!')
     else:
-        print ('Sorry, you ran out of guesses. The word was ', secretWord, '.')
+        print ('        Sorry, you ran out of guesses. The word was ', secretWord, '.')
 
 
 def getAvailableLetters():
@@ -54,15 +51,15 @@ def hangman(secretWord):
     lettersGuessed = []
     message_begin(secretWord)
     while  isWordGuessed(secretWord, lettersGuessed) == False and guesses >0:
-        print ('#                 You have ', guesses, 'guesses left.              #')
-        a = "Good Guess: "
-        b = "Oops! That letter is not in my word: "
-        c = "'Oops! You have already guessed that letter: "
+        print ('                  You have ', guesses, 'guesses left.               ')
+        a = "        Good Guess: "
+        b = "        Oops! That letter is not in my word: "
+        c = "        Oops! You have already guessed that letter: "
         letter = ''
         available_letter(lettersGuessed)
-        letter = input('Please guess a letter: ').lower()
+        letter = input('  Please guess a letter: ').lower()
         if isInt(letter) == True:
-            print('Por favor digite uma letra.')
+            print('      Input typed wrong. Please enter a letter.       ')
         else:
             if letter in lettersGuessed:
                 add_letter(secretWord, lettersGuessed, letter, c)
@@ -116,9 +113,7 @@ def message_begin(secretWord):
     print('#                                                        #')
     print('#                                                        #')
     print('##########################################################')
-    print('#                                                        #')
-    print('#                                                        #')
-    print ('#    I am thinking of a word that is', len(secretWord), ' letters long.    #')
+    print ('    I am thinking of a word that is', len(secretWord), ' letters long.    ')
     Count_letters_notEqual(secretWord)
     #print ('-------------')
 
